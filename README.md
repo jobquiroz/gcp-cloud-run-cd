@@ -41,13 +41,32 @@ See:
 - [Changes for building and deploying in Google Cloud](https://cloud.google.com/artifact-registry/docs/transition/changes-gcp?hl=en)
 
 
+### GitHub actions
 
+First we create a service account from the console with the following roles:
+- Cloud Build Service Account
+- Cloud Run Admin
+- Cloud Run Service Agent
+- Viewer
 
-gcloud iam service-accounts list --project=<Project-Name>
+Check service accounts: 
+- `gcloud iam service-accounts list --project=<Project-Name>`
 
-gcloud iam service-accounts keys create ./keys.json --iam-account email@address
+We generate the keys: 
 
-gcloud auth activate-service-account --key-file=keys.json
+- `gcloud iam service-accounts keys create ./keys.json --iam-account email@address`
+
+It is better to use keys.json in GitHub actions and then delete it. But if we want to 
+keep it we can add keys.json to .gitignore
+
+Authenticate (to see everything is ok): 
+
+- `gcloud auth activate-service-account --key-file=keys.json`
+
+Verify auth: 
+- `gcloud auth list`
+
+Run previous command for building (I'm using the first option). Everything should work as if the owner is deploying the app.
 
 # Useful links
 * Paul Craig [blog](https://dev.to/pcraig3/quickstart-continuous-deployment-to-google-cloud-run-using-github-actions-fna)
