@@ -17,9 +17,10 @@ jobs:
     #if: "contains(github.event.head_commit.message, 'to deploy')"
     steps:
       - uses: actions/checkout@v2
-
+    
       # Setup gcloud CLI
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
+      - uses: google-github-actions/setup-gcloud@main
+     #- uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
         with:
           version: "290.0.1"
           service_account_key: ${{ secrets.GCP_SA_KEY_JSON }}
