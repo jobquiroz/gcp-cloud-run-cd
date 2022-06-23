@@ -14,7 +14,7 @@ jobs:
   deploy:
     name: Deploy to Cloud Run
     runs-on: ubuntu-latest
-    #if: "contains(github.event.head_commit.message, 'to deploy')"
+    if: "contains(github.event.head_commit.message, 'to deploy')"
     steps:
       - uses: actions/checkout@v2
     
